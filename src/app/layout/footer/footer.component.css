@@ -1,0 +1,6 @@
+footer {
+  scroll-margin-top: 100px;
+}
+a {
+  transition: color 0.3s;
+}
