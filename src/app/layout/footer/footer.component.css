@@ -1,6 +1,22 @@
-footer {
+#about {
   scroll-margin-top: 100px;
 }
 a {
-  transition: color 0.3s;
+  position: relative;
+  text-decoration: none;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
 }

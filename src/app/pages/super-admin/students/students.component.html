@@ -1,0 +1,79 @@
+<div class="p-6">
+  <h2 class="text-2xl font-bold mb-4">Talabalar ro‘yxati</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+    <input
+      type="text"
+      pInputText
+      placeholder="F.I.Sh."
+      [(ngModel)]="search.fullName"
+      (ngModelChange)="onSearchChange()"
+    />
+    <input
+      type="text"
+      pInputText
+      placeholder="Manzil"
+      [(ngModel)]="search.address"
+      (ngModelChange)="onSearchChange()"
+    />
+    <p-dropdown
+      [options]="genders"
+      [(ngModel)]="search.gender"
+      placeholder="Jinsi"
+      (ngModelChange)="onSearchChange()"
+    ></p-dropdown>
+    <p-calendar
+      [(ngModel)]="search.startYear"
+      dateFormat="yy-mm-dd"
+      placeholder="Tug‘ilgan sana (dan)"
+      (ngModelChange)="onSearchChange()"
+    ></p-calendar>
+    <p-calendar
+      [(ngModel)]="search.endYear"
+      dateFormat="yy-mm-dd"
+      placeholder="Tug‘ilgan sana (gacha)"
+      (ngModelChange)="onSearchChange()"
+    ></p-calendar>
+  </div>
+
+  <div class="flex gap-2 mb-4">
+    <button pButton label="Qidirish" icon="pi pi-search" (click)="loadStudents()"></button>
+    <button pButton label="Tozalash" icon="pi pi-times" severity="secondary" (click)="clearFilters()"></button>
+  </div>
+
+  <div *ngIf="isLoading" class="text-center mt-10">Yuklanmoqda...</div>
+
+  <p-table *ngIf="!isLoading" [value]="students" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>F.I.Sh.</th>
+        <th>Telefon</th>
+        <th>Jinsi</th>
+        <th>Tug‘ilgan sana</th>
+        <th>Manzil</th>
+        <th>Ro‘yxatdan o‘tgan sana</th>
+        <th>Holati</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-student>
+      <tr>
+        <td>{{ student.fullName }}</td>
+        <td>{{ student.phoneNumber }}</td>
+        <td>{{ student.gender === 'Male' ? 'Erkak' : 'Ayol' }}</td>
+        <td>{{ student.birthDate | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ student.address }}</td>
+        <td>{{ student.enrollmentDate | date: 'yyyy-MM-dd' }}</td>
+        <td>
+          <span
+            [ngClass]="{
+              'text-green-600': student.isActive,
+              'text-red-500': !student.isActive
+            }"
+          >
+            {{ student.isActive ? 'Faol' : 'Bloklangan' }}
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

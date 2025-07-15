@@ -1,0 +1,51 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+  <div class="w-full max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
+    <div class="bg-gradient-to-br from-blue-600 to-blue-400 text-white p-10 flex flex-col justify-center">
+      <h2 class="text-3xl font-bold mb-4">Xush kelibsiz!</h2>
+      <p class="text-lg">
+        <span class="underline cursor-pointer" [routerLink]="['']">
+          {{ config.projectName }}
+        </span>
+        platformasiga kirib o‘quv markazingizni boshqarishni boshlang.
+      </p>
+      <div class="mt-8">
+        <i class="pi pi-graduation text-6xl opacity-50"></i>
+      </div>
+    </div>
+
+    <div class="p-10">
+      <h3 class="text-2xl font-semibold text-gray-800 text-center mb-6">Kirish</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-600 mb-1">Foydalanuvchi nomi yoki telefon</label>
+          <input
+            pInputText
+            type="text"
+            formControlName="identifier"
+            class="w-full"
+            placeholder="admin@example.com"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-600 mb-1">Parol</label>
+          <p-password
+            formControlName="password" 
+            styleClass="w-full"           
+            [feedback]="true"
+            [toggleMask]="true"
+            placeholder="Parol"
+          ></p-password>
+        </div>
+
+        <button
+          pButton
+          type="submit"
+          label="Kirish"
+          class="w-full p-button-primary p-button-lg"
+          [disabled]="loginForm.invalid || isLoading"
+        ></button>
+      </form>
+    </div>
+  </div>
+</div>

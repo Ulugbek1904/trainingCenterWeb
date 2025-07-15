@@ -1,0 +1,63 @@
+<div class="p-6">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-2xl font-bold">O‘quv markazlar</h2>
+    <button pButton label="Yangi qo‘shish" icon="pi pi-plus" class="p-button-success" (click)="onEdit()"></button>
+  </div>
+
+  <div *ngIf="isLoading" class="text-center mt-10">Yuklanmoqda...</div>
+
+  <p-table *ngIf="!isLoading" [value]="tenants" [paginator]="true" [rows]="10" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nomi</th>
+        <th>Telefon</th>
+        <th>Manzil</th>
+        <th>Holat</th>
+        <th>Amallar</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-tenant>
+      <tr>
+        <td>{{ tenant.name }}</td>
+        <td>{{ tenant.contactPhoneNumber }}</td>
+        <td>{{ tenant.address }}</td>
+        <td>
+          <span
+            [ngClass]="{
+              'text-green-600': tenant.isActive,
+              'text-red-500': !tenant.isActive
+            }"
+            class="font-semibold"
+          >
+            {{ tenant.isActive ? 'Faol' : 'Faol emas' }}
+          </span>
+        </td>
+        <td class="space-x-2">
+          <button pButton icon="pi pi-pencil" class="p-button-sm" (click)="onEdit(tenant)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="onDelete(tenant.id)"></button>
+          <button
+            pButton
+            [icon]="tenant.isActive ? 'pi pi-eye-slash' : 'pi pi-eye'"
+            class="p-button-secondary p-button-sm"
+            (click)="onToggleStatus(tenant)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  header="O‘quv markaz formasi"
+  [(visible)]="isFormOpen"
+  [modal]="true"
+  [closable]="true"
+  [style]="{ width: '600px' }"
+  (onHide)="onFormClosed()"
+>
+  <app-tenant-form
+    [tenant]="selectedTenant"
+    (saved)="onFormSaved()"
+    (cancel)="onFormClosed()"
+  ></app-tenant-form>
+</p-dialog>

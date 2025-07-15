@@ -1,9 +1,16 @@
 <section class="bg-blue-50 py-24 px-6 text-center mt-16">
-  <h1 class="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
-    <span class="text-blue-600">EduTrek </span> bilan ta’limni yangi bosqichga olib chiqing
+  <h1 class="text-5xl md:text-6xl font-bold text-gray-900 leading-normal mb-6">
+    <span class="text-blue-600">{{ config.projectName }}</span> bilan ta’limni yangi bosqichga olib chiqing
   </h1>
   <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-    O‘quv markazingizni raqamlashtiring, vaqtni tejang va natijadorlikni oshiring — bularning barchasi Trainex yordamida.
+    O‘quv markazingizni raqamlashtiring, vaqtni tejang va natijadorlikni oshiring — bularning barchasi {{ config.projectName }} yordamida.
   </p>
-  <button pButton type="button" label="Platformaga kirish" class="p-button-lg p-button-raised p-button-rounded px-6"></button>
+
+  <button
+    pButton
+    type="button"
+    label="Platformaga kirish"
+    class="p-button-lg p-button-raised p-button-rounded px-6"
+    [routerLink]="'/login'"
+  ></button>
 </section>

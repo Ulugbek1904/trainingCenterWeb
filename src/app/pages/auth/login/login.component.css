@@ -1,0 +1,11 @@
+input.ng-invalid.ng-touched {
+  border-color: #f87171; 
+}
+
+:host ::ng-deep .p-password-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db; 
+  border-radius: 0.375rem;
+  font-size: 0.875rem; 
+  width: 100%;
+}

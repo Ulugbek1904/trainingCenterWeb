@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+  <div>
+    <label for="name">Nomi</label>
+    <input pInputText id="name" formControlName="name" class="w-full" />
+  </div>
+
+  <div>
+    <label for="telegramBotToken">Telegram Bot Token</label>
+    <input pInputText id="telegramBotToken" formControlName="telegramBotToken" class="w-full" />
+  </div>
+
+  <div>
+    <label for="contactPhoneNumber">Telefon raqami</label>
+    <input pInputText id="contactPhoneNumber" formControlName="contactPhoneNumber" class="w-full" />
+  </div>
+
+  <div>
+    <label for="address">Manzil</label>
+    <input pInputText id="address" formControlName="address" class="w-full" />
+  </div>
+
+  <div>
+    <label for="language">Til</label>
+    <input pInputText id="language" formControlName="language" class="w-full" />
+  </div>
+
+  <div>
+    <label for="logoUrl">Logo URL</label>
+    <input pInputText id="logoUrl" formControlName="logoUrl" class="w-full" />
+  </div>
+
+  <div class="flex justify-end space-x-2 mt-4">
+    <button pButton type="button" label="Bekor qilish" class="p-button-secondary" (click)="onCancel()"></button>
+    <button pButton type="submit" label="Saqlash" [disabled]="isSubmitting || form.invalid"></button>
+  </div>
+</form>
