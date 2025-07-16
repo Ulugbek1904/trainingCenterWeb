@@ -5,6 +5,6 @@ export interface StudentDto {
   birthDate: string;
   address: string;
   enrollmentDate: string;
-  gender: 'Male' | 'Female';
+  gender: number;
   isActive: boolean;
 }

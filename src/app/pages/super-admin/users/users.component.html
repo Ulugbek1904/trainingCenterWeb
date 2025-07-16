@@ -1,0 +1,51 @@
+<div class="p-6">
+  <div class="flex justify-between mb-4">
+    <h2 class="text-2xl font-bold">Adminlar</h2>
+    <button pButton label="Admin qo‘shish" icon="pi pi-plus" class="p-button-success" (click)="onCreate()"></button>
+  </div>
+
+  <div *ngIf="isLoading" class="text-center mt-10">Yuklanmoqda...</div>
+
+  <p-table *ngIf="!isLoading" [value]="users" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>F.I.O</th>
+        <th>Username</th>
+        <th>Telefon</th>
+        <th>Amallar</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.fullName }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.phoneNumber }}</td>
+        <td>
+          <span
+            [ngClass]="{
+              'text-green-600': user.isActive,
+              'text-red-500': !user.isActive
+            }"
+            class="font-semibold"
+          >
+            {{ user.isActive ? 'Faol' : 'Faol emas' }}
+          </span>
+        </td>
+        <td>
+          <button pButton icon="pi pi-pencil" (click)="onEdit(user)" class="p-button-sm"></button>
+          <button pButton icon="pi pi-trash" (click)="onDelete(user.id)" class="p-button-danger p-button-sm"></button>
+          <button
+            pButton
+            [icon]="user.isActive ? 'pi pi-eye-slash' : 'pi pi-eye'"
+            class="p-button-secondary p-button-sm"
+            (click)="onToggleStatus(user)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="isFormOpen" [modal]="true" header="Admin formasi" [style]="{ width: '500px' }" (onHide)="onFormClosed()">
+  <app-user-form [user]="selectedUser" (saved)="onFormSaved()" (cancel)="onFormClosed()"></app-user-form>
+</p-dialog>

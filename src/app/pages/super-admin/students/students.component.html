@@ -59,7 +59,7 @@
       <tr>
         <td>{{ student.fullName }}</td>
         <td>{{ student.phoneNumber }}</td>
-        <td>{{ student.gender === 'Male' ? 'Erkak' : 'Ayol' }}</td>
+        <td>{{ student.gender === 0 ? 'Erkak' : 'Ayol' }}</td>
         <td>{{ student.birthDate | date: 'yyyy-MM-dd' }}</td>
         <td>{{ student.address }}</td>
         <td>{{ student.enrollmentDate | date: 'yyyy-MM-dd' }}</td>

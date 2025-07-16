@@ -1,0 +1,71 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4 p-4">
+  <div class="flex flex-col gap-1">
+    <label for="fullName" class="font-medium">Ism Familiya</label>
+    <input id="fullName" pInputText formControlName="fullName" class="w-full" />
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="username" class="font-medium">Login</label>
+    <input id="username" pInputText formControlName="username" class="w-full" />
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="email" class="font-medium">Email</label>
+    <input id="email" pInputText formControlName="email" class="w-full" />
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="phoneNumber" class="font-medium">Telefon raqam</label>
+    <input id="phoneNumber" pInputText formControlName="phoneNumber" placeholder="+998 9X XXX XX XX" class="w-full" />
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="tenant" class="font-medium">O‘quv markaz (tenant)</label>
+    <p-select
+      [options]="tenants"
+      optionLabel="name"
+      optionValue="id"
+      formControlName="tenantId"
+      placeholder="Tanlang"
+      class="w-full"
+    ></p-select>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="password" class="font-medium">Parol</label>
+    <input id="password" pInputText type="password" formControlName="password" class="w-full" />
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="address" class="font-medium">Manzil</label>
+    <input id="address" pInputText formControlName="address" class="w-full" />
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label for="languagePreference" class="font-medium">Til</label>
+    <input id="languagePreference" pInputText formControlName="languagePreference" class="w-full" />
+  </div>
+
+  <div class="flex items-center gap-2 mt-2">
+    <p-checkbox binary="true" formControlName="isActive" inputId="isActive"></p-checkbox>
+    <label for="isActive" class="font-medium">Faolmi?</label>
+  </div>
+
+  <div class="flex justify-end gap-3 pt-4">
+    <button
+      pButton
+      type="button"
+      (click)="onCancel()"
+      label="Bekor qilish"
+      severity="secondary"
+      class="px-4 py-2"
+    ></button>
+    <button
+      pButton
+      type="submit"
+      [label]="isEditMode ? 'Saqlash' : 'Qo‘shish'"
+      [disabled]="isSubmitting || form.invalid"
+      class="px-4 py-2"
+    ></button>
+  </div>
+</form>

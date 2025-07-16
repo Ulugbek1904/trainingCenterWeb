@@ -37,6 +37,27 @@ export class TenantFormComponent implements OnInit, OnChanges {
   isSubmitting = false;
 
   ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['tenant'] && this.form) {
+      this.initializeForm();
+      if (this.tenant) {
+        this.form.patchValue({
+          name: this.tenant.name,
+          logoUrl: this.tenant.logoUrl,
+          telegramBotToken: this.tenant.telegramBotToken,
+          contactPhoneNumber: this.tenant.contactPhoneNumber,
+          address: this.tenant.address,
+          language: this.tenant.language,
+          isActive: this.tenant.isActive
+        });
+      }
+    }
+  }
+
+  initializeForm() {
     this.form = this.fb.group({
       name: ['', Validators.required],
       logoUrl: [''],
@@ -46,20 +67,6 @@ export class TenantFormComponent implements OnInit, OnChanges {
       language: ['uz'],
       isActive: [true]
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['tenant'] && this.tenant && this.form) {
-      this.form.patchValue({
-        name: this.tenant.name,
-        logoUrl: this.tenant.logoUrl,
-        telegramBotToken: this.tenant.telegramBotToken,
-        contactPhoneNumber: this.tenant.contactPhoneNumber,
-        address: this.tenant.address,
-        language: this.tenant.language,
-        isActive: this.tenant.isActive
-      });
-    }
   }
 
   onSubmit() {
@@ -72,6 +79,9 @@ export class TenantFormComponent implements OnInit, OnChanges {
       this.tenantApi.update(this.tenant.id, dto).subscribe({
         next: () => {
           this.saved.emit();
+          this.isSubmitting = false;
+          this.form.reset();
+          this.initializeForm();
         },
         error: (err) => {
           console.error('Tahrirlashda xatolik:', err);
@@ -83,6 +93,9 @@ export class TenantFormComponent implements OnInit, OnChanges {
       this.tenantApi.create(dto).subscribe({
         next: () => {
           this.saved.emit();
+          this.isSubmitting = false;
+          this.form.reset();
+          this.initializeForm();
         },
         error: (err) => {
           console.error('Yaratishda xatolik:', err);
@@ -94,5 +107,12 @@ export class TenantFormComponent implements OnInit, OnChanges {
 
   onCancel() {
     this.cancel.emit();
+    this.form.reset();
+    this.initializeForm();
+    this.isSubmitting = false;
+  }
+
+  get isEditMode(): boolean {
+    return !!this.tenant;
   }
 }

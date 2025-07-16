@@ -56,6 +56,11 @@ export class TenantsComponent implements OnInit {
     this.isFormOpen = true;
   }
 
+  onCreate() {
+    this.selectedTenant = null;
+    this.isFormOpen = true;
+  }
+
   onFormSaved() {
     this.isFormOpen = false;
     this.loadTenants();

@@ -1,14 +1,25 @@
 <nav class="w-64 bg-white shadow h-screen p-4">
-  <h2 class="text-xl font-bold mb-6">SuperAdmin</h2>
+  <h2 class="text-xl font-bold mb-6 cursor-pointer" routerLink="/">
+    SuperAdmin
+  </h2>
   <ul class="space-y-3">
     <li>
-      <a routerLink="/dashboard" routerLinkActive="font-semibold text-blue-600">Dashboard</a>
+      <a routerLink="/dashboard" routerLinkActive="font-semibold text-blue-600"
+        >Dashboard</a
+      >
     </li>
     <li>
-      <a routerLink="/tenants" routerLinkActive="font-semibold text-blue-600">O‘quv markazlar</a>
+      <a routerLink="/tenants" routerLinkActive="font-semibold text-blue-600"
+        >O‘quv markazlar</a
+      >
     </li>
     <li>
-      <a routerLink="/students" routerLinkActive="font-semibold text-blue-600">Talabalar</a>
+      <a routerLink="/students" routerLinkActive="font-semibold text-blue-600"
+        >Talabalar</a
+      >
+    </li>
+    <li>
+      <a routerLink="/admins" routerLinkActive="active">Adminlar</a>
     </li>
   </ul>
 </nav>

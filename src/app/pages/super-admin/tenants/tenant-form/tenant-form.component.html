@@ -31,6 +31,6 @@
 
   <div class="flex justify-end space-x-2 mt-4">
     <button pButton type="button" label="Bekor qilish" class="p-button-secondary" (click)="onCancel()"></button>
-    <button pButton type="submit" label="Saqlash" [disabled]="isSubmitting || form.invalid"></button>
+    <button pButton type="submit" [label]="isEditMode ? 'Saqlash' : 'Qo‘shish'" [disabled]="isSubmitting || form.invalid"></button>
   </div>
 </form>

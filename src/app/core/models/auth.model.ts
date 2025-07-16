@@ -3,7 +3,7 @@ export interface LoginDto {
   password: string;
 }
 
-export interface UserDto {
+export interface ResponseUserDto {
   id: string;
   username: string;
   fullName: string;
@@ -17,5 +17,5 @@ export interface UserDto {
 export interface AuthResponse {
   accessToken: string;
   refreshToken: string;
-  user: UserDto;
+  user: ResponseUserDto;
 }
