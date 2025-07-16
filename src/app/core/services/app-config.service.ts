@@ -6,7 +6,7 @@ export class AppConfigService {
   readonly projectName = 'EduTrek';
 
   // API config
-  readonly apiBaseUrl = 'http://localhost:7137/api';
+  readonly apiBaseUrl = 'https://localhost:7137/api';
   readonly authApiUrl = `${this.apiBaseUrl}/auth`;
   readonly tenantApiUrl = `${this.apiBaseUrl}/tenant`;
   readonly studentApiUrl = `${this.apiBaseUrl}/student`;
